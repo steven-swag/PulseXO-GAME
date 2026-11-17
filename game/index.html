@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="start-content">
+                <h1 class="game-title">
+                    <span class="neon-text">NEON</span>
+                    <span class="neon-text purple">TIC-TAC-TOE</span>
+                </h1>
+                <p class="tagline">Challenge a friend or battle the AI</p>
+
+                <div class="mode-selection">
+                    <h2>Select Game Mode</h2>
+                    <div class="mode-buttons">
+                        <button id="pvp-btn" class="mode-btn neon-btn" data-mode="pvp">
+                            <span class="btn-icon">👥</span>
+                            <span>Player vs Player</span>
+                        </button>
+                        <button id="pvc-btn" class="mode-btn neon-btn" data-mode="pvc">
+                            <span class="btn-icon">🤖</span>
+                            <span>Player vs Computer</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="difficulty-selection" class="difficulty-selection hidden">
+                    <h2>Select Difficulty</h2>
+                    <div class="difficulty-buttons">
+                        <button class="difficulty-btn neon-btn" data-difficulty="easy">
+                            <span class="btn-icon">😊</span>
+                            <span>Easy</span>
+                            <span class="difficulty-desc">Random moves</span>
+                        </button>
+                        <button class="difficulty-btn neon-btn" data-difficulty="medium">
+                            <span class="btn-icon">😎</span>
+                            <span>Medium</span>
+                            <span class="difficulty-desc">Smart moves</span>
+                        </button>
+                        <button class="difficulty-btn neon-btn" data-difficulty="hard">
+                            <span class="btn-icon">🧠</span>
+                            <span>Hard</span>
+                            <span class="difficulty-desc">Unbeatable AI</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-toggle">
+                    <button id="settings-btn" class="neon-btn secondary">
+                        <span class="btn-icon">⚙️</span>
+                        <span>Settings</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div id="settings-panel" class="settings-panel hidden">
+            <div class="settings-content">
+                <h2>Settings</h2>
+                <div class="setting-item">
+                    <label for="sound-toggle">Sound Effects</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="sound-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="music-toggle">Background Music</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="music-toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="animations-toggle">Animations</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="animations-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <button id="close-settings" class="neon-btn">Close</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <header class="game-header">
+                <h1 class="game-title-small">
+                    <span class="neon-text">NEON</span>
+                    <span class="neon-text purple">TIC-TAC-TOE</span>
+                </h1>
+                <button id="back-btn" class="neon-btn secondary small">← Back</button>
+            </header>
+
+            <div class="turn-indicator">
+                <div class="player-turn" id="player-turn">
+                    <span class="turn-label">Current Turn:</span>
+                    <span class="turn-player" id="turn-player">X</span>
+                </div>
+                <div class="mode-indicator" id="mode-indicator"></div>
+            </div>
+
+            <div class="scoreboard">
+                <div class="score-item x-score">
+                    <span class="score-label">Player X</span>
+                    <span class="score-value" id="x-wins">0</span>
+                    <span class="score-sub">Wins</span>
+                </div>
+                <div class="score-item draw-score">
+                    <span class="score-label">Draws</span>
+                    <span class="score-value" id="draws">0</span>
+                    <span class="score-sub">Draws</span>
+                </div>
+                <div class="score-item o-score">
+                    <span class="score-label">Player O</span>
+                    <span class="score-value" id="o-wins">0</span>
+                    <span class="score-sub">Wins</span>
+                </div>
+            </div>
+
+            <div class="game-board-container">
+                <div class="game-board" id="game-board" role="grid" aria-label="Tic-Tac-Toe board">
+                    <button class="cell" data-index="0" role="gridcell" aria-label="Cell 1"></button>
+                    <button class="cell" data-index="1" role="gridcell" aria-label="Cell 2"></button>
+                    <button class="cell" data-index="2" role="gridcell" aria-label="Cell 3"></button>
+                    <button class="cell" data-index="3" role="gridcell" aria-label="Cell 4"></button>
+                    <button class="cell" data-index="4" role="gridcell" aria-label="Cell 5"></button>
+                    <button class="cell" data-index="5" role="gridcell" aria-label="Cell 6"></button>
+                    <button class="cell" data-index="6" role="gridcell" aria-label="Cell 7"></button>
+                    <button class="cell" data-index="7" role="gridcell" aria-label="Cell 8"></button>
+                    <button class="cell" data-index="8" role="gridcell" aria-label="Cell 9"></button>
+                </div>
+                <div class="winning-line" id="winning-line"></div>
+            </div>
+
+            <div class="game-controls">
+                <button id="restart-btn" class="neon-btn primary">
+                    <span class="btn-icon">🔄</span>
+                    <span>Restart Game</span>
+                </button>
+                <button id="new-game-btn" class="neon-btn secondary">
+                    <span class="btn-icon">🎮</span>
+                    <span>New Game</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen">
+            <div class="game-over-content">
+                <div class="result-animation" id="result-animation"></div>
+                <h2 class="game-over-title" id="game-over-title">Game Over</h2>
+                <p class="game-over-message" id="game-over-message"></p>
+                <div class="final-scores" id="final-scores"></div>
+                <div class="game-over-controls">
+                    <button id="play-again-btn" class="neon-btn primary">
+                        <span class="btn-icon">🔄</span>
+                        <span>Play Again</span>
+                    </button>
+                    <button id="main-menu-btn" class="neon-btn secondary">
+                        <span class="btn-icon">🏠</span>
+                        <span>Main Menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="click-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT" type="audio/wav">
+    </audio>
+    <audio id="win-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT" type="audio/wav">
+    </audio>
+    <audio id="draw-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
