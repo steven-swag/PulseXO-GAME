@@ -1,3 +1,8 @@
+<img width="732" height="882" alt="image" src="https://github.com/user-attachments/assets/9666f09a-4812-4db9-a9ce-d0677d04dd50" />
+<img width="1133" height="775" alt="Screenshot 2026-11-17 205220" src="https://github.com/user-attachments/assets/1cca0507-2b1c-4058-9b6c-4ad30baad4f5" />
+<img width="767" height="886" alt="Screenshot 2026-11-17 205233" src="https://github.com/user-attachments/assets/8c09a688-9054-4a7e-847c-185938f6a732" />
+
+
 # NetPulse Devices API 🎮
 
 A multi-purpose repository containing the **NetPulse Devices API** and a **Neon Tic-Tac-Toe** game built with vanilla web technologies.
