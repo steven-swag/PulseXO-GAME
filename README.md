@@ -47,7 +47,7 @@ cd game
 
 # Option 3: Any HTTP server
 python -m http.server 8000
-# Then open http://localhost:8000
+# Then open http://localhost:8000/game
 ```
 
 ### 📖 Full Game Documentation
